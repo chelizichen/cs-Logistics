@@ -3,6 +3,7 @@ package com.caoshuai.back.controller;
 import com.caoshuai.back.dto.Pagination;
 import com.caoshuai.back.dto.Ret;
 import com.caoshuai.back.entity.User;
+import com.caoshuai.back.service.LoginService;
 import com.caoshuai.back.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,9 @@ public class UserController {
 
         @Autowired
         private UserService userService;
+
+        @Autowired
+        private LoginService loginService;
 
         @PostMapping
         public User createUser(@RequestBody User user) {
@@ -43,6 +47,11 @@ public class UserController {
             Integer _page = Integer.parseInt(page) - 1;
             Integer _size = Integer.valueOf(size);
             return Ret.success(userService.getAllUsers(keyword,_page,_size));
+        }
+
+        @PostMapping("/login")
+        public Ret Login(@RequestBody User user){
+            return Ret.success(loginService.login(user.getEmail(),user.getPassword()));
         }
 
 
