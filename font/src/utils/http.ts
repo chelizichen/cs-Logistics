@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const request = axios.create({
-    baseURL:"localhost:8080/",
+    baseURL:"/server/",
+    headers: { "Content-Type": "application/json;charset=utf-8" },
 })
 
 request.interceptors.response.use(function(response){

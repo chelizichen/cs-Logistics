@@ -4,7 +4,9 @@
         <el-header>Header</el-header>
         <el-container>
           <el-aside>Aside</el-aside>
-          <el-main>Main</el-main>
+          <el-main>
+            <RouterView></RouterView>
+          </el-main>
         </el-container>
         <el-footer>Footer</el-footer>
       </el-container>
@@ -13,5 +15,6 @@
   
   <script setup lang="ts">
   import { ElContainer, ElHeader, ElAside, ElMain, ElFooter } from 'element-plus';
+import { RouterView } from 'vue-router';
   
   </script>

@@ -1,5 +1,7 @@
 package com.caoshuai.back.controller;
 
+import com.caoshuai.back.dto.Pagination;
+import com.caoshuai.back.dto.Ret;
 import com.caoshuai.back.entity.User;
 import com.caoshuai.back.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +37,13 @@ public class UserController {
         }
 
         @GetMapping
-        public List<User> getAllUsers() {
-            return userService.getAllUsers();
+        public Ret getAllUsers(@RequestParam(value = "keyword",defaultValue = "")String keyword,
+                               @RequestParam(value = "page",defaultValue = "1") String page,
+                               @RequestParam(value = "size",defaultValue = "10")String size) {
+            Integer _page = Integer.parseInt(page) - 1;
+            Integer _size = Integer.valueOf(size);
+            return Ret.success(userService.getAllUsers(keyword,_page,_size));
         }
+
 
 }

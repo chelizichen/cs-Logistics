@@ -1,12 +1,17 @@
 package com.caoshuai.back.service;
 
+import com.caoshuai.back.dto.ListRet;
 import com.caoshuai.back.entity.User;
 import com.caoshuai.back.expection.ResourceNotFoundException;
 import com.caoshuai.back.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class UserService {
@@ -37,7 +42,16 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public ListRet getAllUsers(String keyword,Integer page,Integer size) {
+        System.out.println(keyword);
+        System.out.println(page);
+        System.out.println(size);
+
+        Pageable pageable = PageRequest.of(page, size);
+        Page<User> byKeyword = userRepository.findByKeyword(keyword, pageable);
+        List<User> content = byKeyword.getContent();
+        long totalElements = byKeyword.getTotalElements();
+        ListRet listRet = new ListRet(content, totalElements);
+        return listRet;
     }
 }

@@ -1,12 +1,12 @@
 package com.caoshuai.back.entity;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,16 +28,17 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private String createTime;
+    private Date createTime;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    private Set<String> permissions;
+//    @ElementCollection(fetch = FetchType.EAGER)
+    @Column(nullable = false)
+    private String permissions;
 
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
@@ -90,11 +91,11 @@ public class User {
         this.password = password;
     }
 
-    public Set<String> getPermissions() {
+    public String getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(Set<String> permissions) {
+    public void setPermissions(String permissions) {
         this.permissions = permissions;
     }
 }
