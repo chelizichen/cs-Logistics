@@ -18,20 +18,19 @@ public class User {
     @Column(nullable = false)
     private String address;
 
-    @Column(nullable = false)
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(nullable = false)
+    @Column(name = "email")
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "password")
     private String password;
 
-    @Column(nullable = false)
+    @Column(name = "create_time")
     private Date createTime;
 
-//    @ElementCollection(fetch = FetchType.EAGER)
-    @Column(nullable = false)
+    @Column(name = "permissions")
     private String permissions;
 
     public Date getCreateTime() {

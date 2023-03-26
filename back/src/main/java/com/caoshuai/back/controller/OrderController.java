@@ -43,7 +43,7 @@ public class OrderController {
         if (existingOrder == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            existingOrder.setCustomerName(order.getCustomerName());
+            existingOrder.setCustomer_id(order.getCustomer_id());
             existingOrder.setOrderDate(order.getOrderDate());
             existingOrder.setTotal(order.getTotal());
             Order savedOrder = orderRepository.save(existingOrder);

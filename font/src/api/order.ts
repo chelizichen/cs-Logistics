@@ -1,23 +1,26 @@
 import request from "../utils/http";
 
 
-const getAllOrders = () => {
-  return request.get('/orders');
+const getAllOrders = (pagination:pagination) => {
+  return request({
+   url: '/orders',
+   params:pagination
+  });
 };
 
-const getOrderById = (id) => {
+const getOrderById = (id:string) => {
   return request.get(`/orders/${id}`);
 };
 
-const createOrder = (data) => {
+const createOrder = (data:orders_table) => {
   return request.post('/orders', data);
 };
 
-const updateOrder = (id, data) => {
+const updateOrder = (id:string, data:orders_table) => {
   return request.put(`/orders/${id}`, data);
 };
 
-const deleteOrder = (id) => {
+const deleteOrder = (id:string) => {
   return request.delete(`/orders/${id}`);
 };
 

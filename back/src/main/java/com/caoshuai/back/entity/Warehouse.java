@@ -21,6 +21,9 @@ public class Warehouse {
     @Column(name = "out_time")
     private String outTime;
 
+    @Column(name = "order_id")
+    private String orderId;
+
     public Long getId() {
         return id;
     }

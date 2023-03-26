@@ -11,8 +11,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "customer_name")
-    private String customerName;
+    @Column(name = "customer_id")
+    private String customer_id;
 
     @Column(name = "order_date")
     private Date orderDate;
@@ -20,8 +20,18 @@ public class Order {
     @Column(name = "total")
     private BigDecimal total;
 
+
+
     @Column(name = "amount")
     private BigDecimal amount;
+
+    public String getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(String customer_id) {
+        this.customer_id = customer_id;
+    }
 
     public Long getId() {
         return id;
@@ -31,13 +41,6 @@ public class Order {
         this.id = id;
     }
 
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
 
     public Date getOrderDate() {
         return orderDate;

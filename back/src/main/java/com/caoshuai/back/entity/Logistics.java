@@ -12,8 +12,8 @@ public class Logistics {
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "logistics_no")
-    private String logisticsNo;
+    @Column(name = "order_id")
+    private String orderId;
 
     @Column(name = "logistics_company")
     private String logisticsCompany;
@@ -41,12 +41,12 @@ public class Logistics {
         this.userId = userId;
     }
 
-    public String getLogisticsNo() {
-        return logisticsNo;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setLogisticsNo(String logisticsNo) {
-        this.logisticsNo = logisticsNo;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public String getLogisticsCompany() {
@@ -72,6 +72,4 @@ public class Logistics {
     public void setLogisticsTime(Date logisticsTime) {
         this.logisticsTime = logisticsTime;
     }
-
-
 }
