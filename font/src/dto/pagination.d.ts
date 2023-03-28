@@ -1,5 +1,5 @@
 type pagination = {
     keyword:string;
-    page:string;
-    size:string;
+    page:string|number;
+    size:string|number;
 }

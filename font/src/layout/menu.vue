@@ -5,17 +5,14 @@
         <el-menu
           default-active="2"
           class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
         >
           <el-sub-menu index="1">
             <template #title>
               <el-icon><location /></el-icon>
               <span>系统管理</span>
             </template>
-              <el-menu-item index="1-1"> <el-icon><location /></el-icon>用户管理</el-menu-item>
-              <el-menu-item index="1-2"> <el-icon><location /></el-icon>权限管理</el-menu-item>
-              <!-- <el-menu-item index="1-3"> <el-icon><location /></el-icon>仓库列表</el-menu-item> -->
+              <el-menu-item index="1-1" @click="to('/system/user')"> <el-icon><location /></el-icon>用户管理</el-menu-item>
+              <el-menu-item index="1-2" @click="to('/system/permission')"> <el-icon><location /></el-icon>权限管理</el-menu-item>
           </el-sub-menu>
           <el-sub-menu index="2">
             <template #title>
@@ -47,10 +44,12 @@
     Location,
     Setting,
   } from '@element-plus/icons-vue'
-  const handleOpen = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-  }
-  const handleClose = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-  }
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+function to(path:string){
+  router.push(path)
+}
+
   </script>

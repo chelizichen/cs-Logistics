@@ -2,9 +2,9 @@ type user_table = {
     id:string;
     name:string;
     address:string;
-    phone_number:string;
+    phoneNumber:string;
     email:string;
     password:string;
-    permission:string;
-    create_time:string;
+    permissions:string;
+    createTime:string;
 }

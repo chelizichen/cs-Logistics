@@ -2,6 +2,7 @@ package com.caoshuai.back.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -28,20 +29,23 @@ public class User {
     private String password;
 
     @Column(name = "create_time")
-    private Date createTime;
+    private LocalDateTime createTime;
 
     @Column(name = "permissions")
     private String permissions;
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
-
+    @PrePersist
+    public void prePersist() {
+        createTime = LocalDateTime.now();
+    }
     public Long getId() {
         return id;
     }
