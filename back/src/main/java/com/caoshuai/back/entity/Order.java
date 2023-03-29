@@ -12,7 +12,7 @@ public class Order {
     private Long id;
 
     @Column(name = "customer_id")
-    private String customer_id;
+    private Integer customerId;
 
     @Column(name = "order_date")
     private Date orderDate;
@@ -20,17 +20,27 @@ public class Order {
     @Column(name = "total")
     private BigDecimal total;
 
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    @Column(name = "order_id")
+    private Long orderId;
 
 
     @Column(name = "amount")
     private BigDecimal amount;
 
-    public String getCustomer_id() {
-        return customer_id;
+    public Integer getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(String customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
     public Long getId() {

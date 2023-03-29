@@ -21,9 +21,9 @@ public class Logistics {
     @Column(name = "logistics_status")
     private String logisticsStatus;
 
-
     @Column(name = "logistics_time")
     private Date logisticsTime;
+
 
     public Long getId() {
         return id;

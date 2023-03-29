@@ -1,8 +1,8 @@
 type orders_table = {
     id:string;
-    customer_id:string;
-    order_date:string;
+    customerId:string;
+    orderDate:string;
     total:string;
     amount:string;
-    order_id:string;
+    orderId:string;
 }

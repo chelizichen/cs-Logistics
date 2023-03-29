@@ -1,8 +1,13 @@
 package com.caoshuai.back.controller;
 
+import com.caoshuai.back.dto.ListRet;
+import com.caoshuai.back.dto.Ret;
 import com.caoshuai.back.entity.Order;
 import com.caoshuai.back.repo.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +22,15 @@ public class OrderController {
     private OrderRepository orderRepository;
 
     @GetMapping
-    public List<Order> getAllOrders() {
-        return orderRepository.findAll();
+    public Ret getAllOrders(@RequestParam(value = "keyword",defaultValue = "")String keyword,
+                                    @RequestParam(value = "page",defaultValue = "1") String page,
+                                    @RequestParam(value = "size",defaultValue = "10")String size) {
+        Integer _page = Integer.parseInt(page) - 1;
+        Integer _size = Integer.valueOf(size);
+        Pageable pageable = PageRequest.of(_page, _size);
+        Page<Order> byKeyword = orderRepository.findByKeyword(keyword, pageable);
+        ListRet listRet = new ListRet(byKeyword.getContent(), byKeyword.getTotalElements());
+        return Ret.success(listRet);
     }
 
     @GetMapping("/{id}")
@@ -43,7 +55,7 @@ public class OrderController {
         if (existingOrder == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            existingOrder.setCustomer_id(order.getCustomer_id());
+            existingOrder.setCustomerId(order.getCustomerId());
             existingOrder.setOrderDate(order.getOrderDate());
             existingOrder.setTotal(order.getTotal());
             Order savedOrder = orderRepository.save(existingOrder);

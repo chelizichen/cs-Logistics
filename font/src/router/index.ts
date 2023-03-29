@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import User from '../views/system/user/index.vue';
 import Permission from '../views/system/permission/index.vue';
+import OrderList from '../views/order/list/list.vue';
 
 const routes = [
   {
@@ -20,9 +21,9 @@ const routes = [
     component: Permission,
   },
   {
-    path: '/',
-    name: 'Home',
-    component: Home,
+    path: '/order/list',
+    name: 'OrderList',
+    component: OrderList,
   },
   {
     path: '/',

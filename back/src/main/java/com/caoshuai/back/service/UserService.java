@@ -44,9 +44,6 @@ public class UserService {
     }
 
     public ListRet getAllUsers(String keyword,Integer page,Integer size) {
-        System.out.println(keyword);
-        System.out.println(page);
-        System.out.println(size);
 
         Pageable pageable = PageRequest.of(page, size);
         Page<User> byKeyword = userRepository.findByKeyword(keyword, pageable);

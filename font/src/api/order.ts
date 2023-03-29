@@ -12,11 +12,11 @@ const getOrderById = (id:string) => {
   return request.get(`/orders/${id}`);
 };
 
-const createOrder = (data:orders_table) => {
+const createOrder = (data:Partial<orders_table>) => {
   return request.post('/orders', data);
 };
 
-const updateOrder = (id:string, data:orders_table) => {
+const updateOrder = (id:string, data:Partial<orders_table>) => {
   return request.put(`/orders/${id}`, data);
 };
 
@@ -24,7 +24,7 @@ const deleteOrder = (id:string) => {
   return request.delete(`/orders/${id}`);
 };
 
-export default {
+export  {
   getAllOrders,
   getOrderById,
   createOrder,

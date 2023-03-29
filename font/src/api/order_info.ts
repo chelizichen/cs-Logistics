@@ -23,7 +23,7 @@ const deleteOrderInfo = (id: string) => {
   return request.delete(`/order_info/${id}`);
 };
 
-export default {
+export  {
   getAllOrderInfo,
   getOrderInfoById,
   createOrderInfo,
