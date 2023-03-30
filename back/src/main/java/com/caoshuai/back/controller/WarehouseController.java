@@ -1,6 +1,7 @@
 package com.caoshuai.back.controller;
 
 
+import com.caoshuai.back.dto.Ret;
 import com.caoshuai.back.entity.Warehouse;
 import com.caoshuai.back.service.WarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,13 @@ public class WarehouseController {
     private WarehouseService warehouseService;
 
     @GetMapping
-    public List<Warehouse> getAllWarehouses() {
-        return warehouseService.getAllWarehouses();
+    public Ret getAllWarehouses(@RequestParam(value = "keyword",defaultValue = "")String keyword,
+                                            @RequestParam(value = "page",defaultValue = "1") String page,
+                                            @RequestParam(value = "size",defaultValue = "10")String size) {
+
+        Integer _page = Integer.parseInt(page) - 1;
+        Integer _size = Integer.valueOf(size);
+        return Ret.success(warehouseService.getAllWarehouses(keyword,_page,_size));
     }
 
     @GetMapping("/{id}")
