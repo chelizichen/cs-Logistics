@@ -11,6 +11,6 @@ import org.springframework.data.domain.Pageable;
 @Repository
 public interface WarehouseRepository extends JpaRepository<Warehouse, Long> {
 
-    @Query("SELECT w,h FROM Warehouse w,House h where w.houseId = h.id and h.name like %?1% ")
+    @Query("SELECT w FROM Warehouse w,House h where w.houseId = h.id and h.name like %?1% ")
     Page<Warehouse> getAllByKeyWord(String keyword,Pageable pageable);
 }

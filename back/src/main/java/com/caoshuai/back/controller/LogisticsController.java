@@ -1,9 +1,12 @@
 package com.caoshuai.back.controller;
 
 
+import com.caoshuai.back.dto.Ret;
 import com.caoshuai.back.entity.Logistics;
 import com.caoshuai.back.service.LogisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -76,5 +79,15 @@ public class LogisticsController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/getUserById")
+    public Ret getByUserId(@RequestParam(value = "id", defaultValue = "1") String id,
+                           @RequestParam(value = "page", defaultValue = "1") String page,
+                           @RequestParam(value = "size", defaultValue = "10") String size) {
+        Long _id = Long.parseLong(id);
+        Integer _page = Integer.parseInt(page) - 1;
+        Integer _size = Integer.valueOf(size);
+        return Ret.success(logisticsService.getByUserId(_id, _page, _size));
     }
 }

@@ -21,7 +21,6 @@ public class WarehouseService {
     public ListRet getAllWarehouses(String keyword,Integer page,Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Warehouse> byKeyword = warehouseRepository.getAllByKeyWord(keyword, pageable);
-        List<Warehouse> all = warehouseRepository.findAll();
         List<Warehouse> content = byKeyword.getContent();
         long totalElements = byKeyword.getTotalElements();
         ListRet listRet = new ListRet(content, totalElements);

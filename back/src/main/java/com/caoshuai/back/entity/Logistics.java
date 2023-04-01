@@ -1,4 +1,5 @@
 package com.caoshuai.back.entity;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,7 +10,7 @@ public class Logistics {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", insertable = false, updatable = false)
     private Long userId;
 
     @Column(name = "order_id")
@@ -24,6 +25,17 @@ public class Logistics {
     @Column(name = "logistics_time")
     private Date logisticsTime;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Long getId() {
         return id;
