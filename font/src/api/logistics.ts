@@ -22,6 +22,13 @@ const getAllLogistics = (pagination:pagination) => {
   const deleteLogistics = (id:string) => {
     return request.delete(`/logistics/${id}`);
   };
+
+  const getLogisticsByUserId = (pagination:paginationById)=>{
+    return request({
+      url:"/logistics/getUserById",
+      params:pagination
+    })
+  }
   
   export default {
     getAllLogistics,
@@ -29,5 +36,6 @@ const getAllLogistics = (pagination:pagination) => {
     createLogistics,
     updateLogistics,
     deleteLogistics,
+    getLogisticsByUserId
   };
   

@@ -3,3 +3,9 @@ type pagination = {
     page:string|number;
     size:string|number;
 }
+
+type paginationById = {
+    id:string|number;
+    page:string|number;
+    size:string|number;
+}
