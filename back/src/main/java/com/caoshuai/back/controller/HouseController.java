@@ -12,7 +12,7 @@ public class HouseController {
     @Autowired
     private HouseService houseService;
 
-    @PostMapping("")
+    @PostMapping
     public House createHouse(@RequestBody House house) {
         return houseService.createHouse(house);
     }

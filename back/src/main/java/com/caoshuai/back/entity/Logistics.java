@@ -1,7 +1,9 @@
 package com.caoshuai.back.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "logistics")
@@ -28,6 +30,7 @@ public class Logistics {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
     private User user;
+
 
     public User getUser() {
         return user;

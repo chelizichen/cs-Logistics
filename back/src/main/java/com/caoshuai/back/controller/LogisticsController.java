@@ -81,6 +81,7 @@ public class LogisticsController {
         }
     }
 
+    // 手机端
     @GetMapping("/getUserById")
     public Ret getByUserId(@RequestParam(value = "id", defaultValue = "1") String id,
                            @RequestParam(value = "page", defaultValue = "1") String page,

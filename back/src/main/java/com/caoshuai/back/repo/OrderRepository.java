@@ -14,7 +14,15 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findByOrderDateBetween(Date start, Date end);
 
+    // 根据名称模糊查询订单
     @Query("SELECT o FROM Order o,User u  WHERE u.name LIKE %?1% and u.id = o.customerId")
     Page<Order> findByKeyword(String keyword, Pageable pageable);
 
+    // 根据Id查询所有记录
+    @Query("SELECT o FROM Order o,Logistics l,Warehouse  w WHERE o.id = ?1 ")
+    Order findAllByOrderId(Long id);
+
+    // 根据UserId 查询所有记录
+    @Query("SELECT o,u FROM Order o,User u where o.customerId = ?1 and o.customerId = u.id ")
+    List<Order> findAllByUserId(Long id);
 }

@@ -2,7 +2,9 @@ package com.caoshuai.back.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -12,7 +14,7 @@ public class Order {
     private Long id;
 
     @Column(name = "customer_id")
-    private Integer customerId;
+    private Long customerId;
 
     @Column(name = "order_date")
     private Date orderDate;
@@ -20,26 +22,51 @@ public class Order {
     @Column(name = "total")
     private BigDecimal total;
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
-    @Column(name = "order_id")
-    private Long orderId;
-
-
     @Column(name = "amount")
     private BigDecimal amount;
 
-    public Integer getCustomerId() {
+    @Column(name = "order_info_id")
+    private Long orderInfoId;
+
+
+    @OneToMany(targetEntity = Logistics.class,cascade=CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    private List<Logistics> logisticsList = new ArrayList<>();
+
+    @OneToMany(targetEntity = Warehouse.class,cascade=CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    private List<Warehouse> warehouseList = new ArrayList<>();
+
+
+    public Long getOrderInfoId() {
+        return orderInfoId;
+    }
+
+    public void setOrderInfoId(Long orderInfoId) {
+        this.orderInfoId = orderInfoId;
+    }
+
+    public List<Logistics> getLogisticsList() {
+        return logisticsList;
+    }
+
+    public void setLogisticsList(List<Logistics> logisticsList) {
+        this.logisticsList = logisticsList;
+    }
+
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) {
+    public List<Warehouse> getWarehouseList() {
+        return warehouseList;
+    }
+
+    public void setWarehouseList(List<Warehouse> warehouseList) {
+        this.warehouseList = warehouseList;
+    }
+
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 

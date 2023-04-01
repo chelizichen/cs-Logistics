@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+// 根据个人ID查询所有订单信息
+// 根据订单查询所有物流信息
+// 下单
+
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -33,13 +37,26 @@ public class OrderController {
         return Ret.success(listRet);
     }
 
+    // 根据订单 查看所有物流信息
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
-        Order order = orderRepository.findById(id).orElse(null);
+    public Ret getOrderById(@PathVariable Long id) {
+        Order order = orderRepository.findAllByOrderId(id);
         if (order == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return Ret.success("none data");
         } else {
-            return new ResponseEntity<>(order, HttpStatus.OK);
+            return Ret.success(order);
+        }
+    }
+
+
+    // 根据个人Id查看所有订单
+    @GetMapping("/user/{id}")
+    public Ret getOrderByUserId(@PathVariable Long id) {
+        List<Order> order = orderRepository.findAllByUserId(id);
+        if (order == null) {
+            return Ret.success("none data");
+        } else {
+            return Ret.success(order);
         }
     }
 
