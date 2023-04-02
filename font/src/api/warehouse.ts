@@ -23,7 +23,7 @@ const deleteWarehouse = (id:string) => {
   return request.delete(`/warehouses/${id}`);
 };
 
-export default {
+export {
   getAllWarehouses,
   getWarehouseById,
   createWarehouse,

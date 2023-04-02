@@ -35,6 +35,7 @@
 <script setup lang="ts">
 import { reactive, ref, watch } from 'vue'
 import { createUser, updateUser } from '../../../api/user';
+import { createWarehouse, updateWarehouse } from '../../../api/warehouse';
 
 const props = defineProps<{
   dialogFormVisible: boolean,
@@ -46,11 +47,11 @@ const formLabelWidth = '140px'
 
 async function submit() {
   if(props.val.id){
-    const data = await updateUser(props.val.id, props.val)
+    const data = await updateWarehouse(props.val.id, props.val)
     console.log(data);
     
   }else{
-    const data = await createUser(props.val)
+    const data = await createWarehouse(props.val)
     console.log(data);
   }
   // @ts-ignore

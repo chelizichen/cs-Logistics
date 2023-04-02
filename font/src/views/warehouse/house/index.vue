@@ -10,11 +10,11 @@
         <div>
             <el-table :data="state.table" border style="width: 100%">
                 <el-table-column align="center" prop="createTime" label="创建时间" width="180" />
-                <el-table-column align="center" prop="name" label="姓名" width="180" />
-                <el-table-column align="center" prop="address" label="地址" />
-                <el-table-column align="center" prop="email" label="邮件" width="180" />
-                <el-table-column align="center" prop="permissions" label="权限" width="180" />
-                <el-table-column align="center" prop="phoneNumber" label="电话" />
+                <el-table-column align="center" prop="isOpen" label="是否开放" width="180" />
+                <el-table-column align="center" prop="location" label="地址" />
+                <el-table-column align="center" prop="name" label="仓库地址" width="180" />
+                <el-table-column align="center" prop="phone" label="电话" width="180" />
+                <el-table-column align="center" prop="workTime" label="工作时间" />
                 <el-table-column align="center" label='操作'>
                     <template #default="scope">
                         <el-button @click="update(scope.row)" type="primary" class="update"> 
@@ -50,6 +50,7 @@ import { onMounted, reactive,ref } from 'vue';
 import { deleteUser, getAllUsers } from '../../../api/user';
 import { ElNotification } from 'element-plus';
 import Edit from './edit.vue';
+import { deleteHouse, getAllHouses } from '../../../api/house';
 const state = reactive({
     table:[],
     total:0,
@@ -59,7 +60,7 @@ const state = reactive({
 
 
 async function search() {
-    const data = await getAllUsers(pagination.value)
+    const data = await getAllHouses(pagination.value)
     state.table = data.data.list;
     state.total = data.data.total
 }
@@ -95,7 +96,7 @@ function update(row:user_table){
 }
 
 async function del(id:string){
-    const data = await deleteUser(id)
+    const data = await deleteHouse(id)
     // @ts-ignore
     if(data.code==0){
         ElNotification({

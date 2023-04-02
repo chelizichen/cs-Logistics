@@ -28,8 +28,8 @@
               <el-icon><location /></el-icon>
               <span>仓库管理</span>
             </template>
-              <el-menu-item index="3-1"> <el-icon><location /></el-icon>商品列表</el-menu-item>
-              <el-menu-item index="3-3"> <el-icon><location /></el-icon>仓库列表</el-menu-item>
+              <el-menu-item index="3-1" @click="to('/warehouse/list')"> <el-icon><location /></el-icon>商品列表</el-menu-item>
+              <el-menu-item index="3-3" @click="to('/house/list')"> <el-icon><location /></el-icon>仓库列表</el-menu-item>
               <el-menu-item index="3-2"> <el-icon><location /></el-icon>库存统计</el-menu-item>
           </el-sub-menu>
         </el-menu>

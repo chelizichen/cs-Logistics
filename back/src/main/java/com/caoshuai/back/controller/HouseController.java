@@ -1,5 +1,6 @@
 package com.caoshuai.back.controller;
 
+import com.caoshuai.back.dto.Ret;
 import com.caoshuai.back.entity.House;
 import com.caoshuai.back.service.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,15 @@ public class HouseController {
     @PostMapping
     public House createHouse(@RequestBody House house) {
         return houseService.createHouse(house);
+    }
+
+    @GetMapping
+    public Ret getList(@RequestParam(value = "keyword", defaultValue = "") String keyword,
+                           @RequestParam(value = "page", defaultValue = "1") String page,
+                           @RequestParam(value = "size", defaultValue = "10") String size) {
+        Integer _page = Integer.parseInt(page) - 1;
+        Integer _size = Integer.valueOf(size);
+        return Ret.success(houseService.findAll(keyword, _page, _size));
     }
 
     @GetMapping("/{id}")

@@ -30,7 +30,7 @@ const getAllLogistics = (pagination:pagination) => {
     })
   }
   
-  export default {
+  export {
     getAllLogistics,
     getLogisticsById,
     createLogistics,

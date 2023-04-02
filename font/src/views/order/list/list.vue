@@ -9,7 +9,7 @@
         </div>
         <div>
             <el-table :data="state.table" border style="width: 100%">
-                <el-table-column align="center" prop="orderId" label="订单ID" width="180" />
+                <el-table-column align="center" prop="orderInfoId" label="订单ID" width="180" />
                 <el-table-column align="center" prop="amount" label="商品总价" width="180" />
                 <el-table-column align="center" prop="customerId" label="用户ID" width="180" />
                 <el-table-column align="center" prop="orderDate" label="下单日期" />

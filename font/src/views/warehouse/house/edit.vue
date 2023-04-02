@@ -34,8 +34,7 @@
 
 <script setup lang="ts">
 import { reactive, ref, watch } from 'vue'
-import { createUser, updateUser } from '../../../api/user';
-
+import {updateHouse,createHouse} from '../../../api/house'
 const props = defineProps<{
   dialogFormVisible: boolean,
   val: Partial<user_table>
@@ -46,11 +45,11 @@ const formLabelWidth = '140px'
 
 async function submit() {
   if(props.val.id){
-    const data = await updateUser(props.val.id, props.val)
+    const data = await updateHouse(props.val.id, props.val)
     console.log(data);
     
   }else{
-    const data = await createUser(props.val)
+    const data = await createHouse(props.val)
     console.log(data);
   }
   // @ts-ignore
