@@ -1,5 +1,7 @@
 package com.caoshuai.back.entity;
 
+import org.hibernate.type.descriptor.sql.VarcharTypeDescriptor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -29,6 +31,10 @@ public class Order {
     private Long orderInfoId;
 
 
+    @Column(name = "order_desc")
+    private String desc;
+
+
     @OneToMany(targetEntity = Logistics.class,cascade=CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private List<Logistics> logisticsList = new ArrayList<>();
@@ -37,6 +43,14 @@ public class Order {
     @JoinColumn(name = "order_id")
     private List<Warehouse> warehouseList = new ArrayList<>();
 
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     public Long getOrderInfoId() {
         return orderInfoId;

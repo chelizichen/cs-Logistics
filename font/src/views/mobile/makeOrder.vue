@@ -1,6 +1,10 @@
 <template>
-    <div>
-        下单界面
+    <div class="make-order">
+        <div class="make">欢迎来到物流下单界面</div>
+        <el-card >
+            <el-button type="primary"  @click="to()">点击下单</el-button>
+            <p class="yh">目前下单可享优惠</p>
+        </el-card>
     </div>
 </template>
 
@@ -10,10 +14,17 @@
 
 import { reactive } from 'vue';
 import { createOrder } from '../../api/order';
+import { useRouter } from 'vue-router';
 
 const state = reactive({
     
 })
+
+const router = useRouter()
+
+function to(){
+    router.push("/make/order")
+}
 
 function makeOrder() {
     createOrder
@@ -22,5 +33,16 @@ function makeOrder() {
 </script>
 
 <style scoped>
-
+.make-order{
+    width: 90%;
+    margin: 20px 5% 0 5%;
+}
+.yh{
+    color: red;
+}
+.make{
+    text-align: center;
+    margin: 20px 0;
+    color: red;
+}
 </style>

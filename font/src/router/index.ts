@@ -10,6 +10,7 @@ import Login from '../views/Login.vue'
 import Admin from '../views/Admin.vue'
 import Mobile from '../views/mobile/index.vue'
 import DetailLogisitics from '../views/mobile/detail.vue';
+import MakeOrder from '../views/mobile/order.vue';
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     path:"/detail/logisitics",
     name:"DetailLogisitics",
     component:DetailLogisitics
+  },
+  {
+    path:"/make/order",
+    name:"MakeOrder",
+    component:MakeOrder
   },
   {
     path:"/admin",

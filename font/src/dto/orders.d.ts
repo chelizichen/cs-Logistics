@@ -4,5 +4,6 @@ type orders_table = {
     orderDate:string;
     total:string;
     amount:string;
-    orderId:string;
+    orderInfoId:string;
+    desc:string;
 }

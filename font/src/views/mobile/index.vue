@@ -1,7 +1,7 @@
 <template>
     <div>
-        <LogisticsList></LogisticsList>
         <MakeOrder></MakeOrder>
+        <LogisticsList></LogisticsList>
     </div>
 </template>
 
