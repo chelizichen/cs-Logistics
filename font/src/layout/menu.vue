@@ -20,8 +20,8 @@
               <span>订单管理</span>
             </template>
               <el-menu-item index="2-1" @click="to('/order/list')"> <el-icon><location /></el-icon>订单列表</el-menu-item>
-              <el-menu-item index="2-2"> <el-icon><location /></el-icon>数据统计</el-menu-item>
-              <el-menu-item index="2-3"> <el-icon><location /></el-icon>退换货列表</el-menu-item>
+              <el-menu-item index="2-2" @click="to('/order/analyze')"> <el-icon><location /></el-icon>数据统计</el-menu-item>
+              <el-menu-item index="2-3" @click="to('/back/list')"> <el-icon><location /></el-icon>退换货列表</el-menu-item>
           </el-sub-menu>
           <el-sub-menu index="3">
             <template #title>

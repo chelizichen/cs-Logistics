@@ -24,15 +24,21 @@ const deleteOrder = (id:string) => {
   return request.delete(`/orders/${id}`);
 };
 
-const getOrderByUserId = (id:string) => {
+const getOrderByUserId = (id: string) => {
   return request.get(`/orders/user/${id}`);
 };
+const getBackList = (params: pagination) => {
+  return request({ url: `/orders/back`, params });
+};
 
-export  {
+
+
+export {
   getAllOrders,
   getOrderById,
   createOrder,
   updateOrder,
   deleteOrder,
-  getOrderByUserId
+  getOrderByUserId,
+  getBackList,
 };

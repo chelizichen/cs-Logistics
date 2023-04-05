@@ -4,6 +4,7 @@ import org.hibernate.type.descriptor.sql.VarcharTypeDescriptor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,6 +35,14 @@ public class Order {
     @Column(name = "order_desc")
     private String desc;
 
+    @Column(name = "order_status")
+    private String orderStatus;
+
+
+
+    @Column(name = "finish_date")
+    private String finishDate;
+
 
     @OneToMany(targetEntity = Logistics.class,cascade=CascadeType.ALL)
     @JoinColumn(name = "order_id")
@@ -43,6 +52,22 @@ public class Order {
     @JoinColumn(name = "order_id")
     private List<Warehouse> warehouseList = new ArrayList<>();
 
+    public String getFinishDate() {
+        return finishDate;
+    }
+
+    public void setFinishDate(LocalDateTime finishDate) {
+        final String s = finishDate.toString();
+        this.finishDate = s;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 
     public String getDesc() {
         return desc;

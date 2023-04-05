@@ -18,6 +18,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query("SELECT o FROM Order o,User u  WHERE u.name LIKE %?1% and u.id = o.customerId")
     Page<Order> findByKeyword(String keyword, Pageable pageable);
 
+    @Query("SELECT o FROM Order o,User u  WHERE u.name LIKE %?1% and u.id = o.customerId and o.orderStatus = '0' ")
+    Page<Order> findBackByKeyword(String keyword, Pageable pageable);
+
     // 根据Id查询所有记录
     @Query("SELECT o FROM Order o,Logistics l,Warehouse  w WHERE o.id = ?1 ")
     Order findAllByOrderId(Long id);
@@ -25,4 +28,10 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     // 根据UserId 查询所有记录
     @Query("SELECT o,u FROM Order o,User u where o.customerId = ?1 and o.customerId = u.id ")
     List<Order> findAllByUserId(Long id);
+
+    @Query("SELECT count (o) as total FROM Order o where o.orderStatus = '0' ")
+    List getBackTotal();
+
+    @Query("SELECT count (o) as total FROM Order o")
+    List getTotal();
 }
