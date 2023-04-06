@@ -23,7 +23,7 @@ watch(props, (val) => {
 function drawChart() {
   const chart = echarts.init(chartRef.value);
   let back = { value: props.backTotal, name: "退货" }
-  let total = { value: props.total - props.backTotal, name: "总数" }
+  let total = { value: props.total, name: "总数" }
   let rate =(props.backTotal / props.total).toFixed(2)
   chart.setOption({
     title: {

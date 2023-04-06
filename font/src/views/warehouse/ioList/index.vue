@@ -12,15 +12,19 @@
         <el-table-column align="center" prop="inTime" label="入库时间" width="180" />
         <el-table-column align="center" prop="outTime" label="出库时间" width="180" />
         <el-table-column align="center" prop="orderId" label="订单ID" width="180" />
+        <el-table-column align="center" prop="operId" label="操作者ID" width="180" />
         <el-table-column align="center" prop="address" label="地址" />
         <el-table-column align="center" prop="houseId" label="仓库ID" width="180" />
         <el-table-column align="center" prop="house.location" label="具体地址" width="180" />
         <el-table-column align="center" prop="house.phone" label="电话" />
-        <el-table-column align="center" label="操作">
+        <el-table-column align="center" label="操作" fixed="right">
           <template #default="scope">
             <el-button @click="update(scope.row)" type="primary" class="update">
               操作
             </el-button>
+            <el-button @click="register(scope.row)" type="success" class="update"> 
+              更新
+          </el-button>
             <el-popconfirm title="确认删除?" @confirm="del(scope.row.id)">
               <template #reference>
                 <el-button class="del"> 删除 </el-button>
@@ -51,12 +55,12 @@
 import { onMounted, reactive, ref } from "vue";
 import { ElNotification } from "element-plus";
 import Edit from "./edit.vue";
-import { deleteWarehouse, getAllWarehouses } from "../../../api/warehouse";
+import { deleteWarehouse, getAllWarehouses, registerWareHouse } from "../../../api/warehouse";
 const state = reactive({
   table: [],
   total: 0,
   dialogFormVisible: false,
-  dialogVal: <Partial<user_table>>{},
+  dialogVal: <Partial<warehouse_table>>{},
 });
 
 async function search() {
@@ -87,7 +91,7 @@ onMounted(async () => {
   await search();
 });
 
-function update(row: user_table) {
+function update(row: warehouse_table) {
   state.dialogFormVisible = true;
   state.dialogVal = row;
   console.log(row);
@@ -103,6 +107,15 @@ async function del(id: string) {
     });
     search();
   }
+}
+
+async function register(row:house_table){
+    registerWareHouse(row)
+    ElNotification({
+            title: "通知",
+            message:"更新成功"
+        })
+    search()
 }
 
 const pagination = ref({

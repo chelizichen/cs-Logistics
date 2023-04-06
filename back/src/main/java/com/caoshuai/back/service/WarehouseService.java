@@ -16,7 +16,7 @@ import java.util.Optional;
 @Service
 public class WarehouseService {
     @Autowired
-    private WarehouseRepository warehouseRepository;
+    public WarehouseRepository warehouseRepository;
 
     public ListRet getAllWarehouses(String keyword,Integer page,Integer size) {
         Pageable pageable = PageRequest.of(page, size);

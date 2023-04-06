@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,5 +62,14 @@ public class WarehouseController {
     public ResponseEntity<Void> deleteWarehouse(@PathVariable Long id) {
         warehouseService.deleteWarehouse(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/register")
+    public Ret registerWareHouse(@RequestBody Warehouse warehouse){
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now.toString());
+        warehouse.setOutTime(now.toString());
+        Warehouse save = warehouseService.warehouseRepository.save(warehouse);
+        return Ret.success(save);
     }
 }

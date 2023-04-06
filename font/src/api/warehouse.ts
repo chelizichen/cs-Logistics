@@ -23,10 +23,19 @@ const deleteWarehouse = (id:string) => {
   return request.delete(`/warehouses/${id}`);
 };
 
+const registerWareHouse = (data:any) => {
+  return request({
+    url:`/warehouses/register`,
+    method:'post',
+    data
+  });
+};
+
 export {
   getAllWarehouses,
   getWarehouseById,
   createWarehouse,
   updateWarehouse,
   deleteWarehouse,
+  registerWareHouse
 };

@@ -6,13 +6,19 @@
         <el-input v-model="props.val.address" autocomplete="off" />
       </el-form-item>
       <el-form-item label="邮箱" :label-width="formLabelWidth">
-        <el-input v-model="props.val.inTime" autocomplete="off" />
+        <el-input v-model="props.val.email" autocomplete="off" />
       </el-form-item>
       <el-form-item label="名字" :label-width="formLabelWidth">
-        <el-input v-model="props.val.outTime" autocomplete="off" />
+        <el-input v-model="props.val.name" autocomplete="off" />
       </el-form-item>
       <el-form-item label="密码" :label-width="formLabelWidth">
-        <el-input v-model="props.val.orderId" autocomplete="off" />
+        <el-input v-model="props.val.password" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="权限" :label-width="formLabelWidth">
+        <el-input v-model="props.val.permissions" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="电话" :label-width="formLabelWidth">
+        <el-input v-model="props.val.phoneNumber" autocomplete="off" />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -21,7 +27,6 @@
         <el-button type="primary" @click="submit">
           修改
         </el-button>
-        
       </span>
     </template>
   </el-dialog>
@@ -29,10 +34,11 @@
 
 <script setup lang="ts">
 import { reactive, ref, watch } from 'vue'
-import {updateHouse,createHouse} from '../../../api/house'
+import { createUser, updateUser } from '../../../api/user';
+
 const props = defineProps<{
   dialogFormVisible: boolean,
-  val: Partial<house_table>
+  val: Partial<user_table>
 }>()
 
 
@@ -40,11 +46,11 @@ const formLabelWidth = '140px'
 
 async function submit() {
   if(props.val.id){
-    const data = await updateHouse(props.val.id, props.val)
+    const data = await updateUser(props.val.id, props.val)
     console.log(data);
     
   }else{
-    const data = await createHouse(props.val)
+    const data = await createUser(props.val)
     console.log(data);
   }
   // @ts-ignore

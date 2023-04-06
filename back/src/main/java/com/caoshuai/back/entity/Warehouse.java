@@ -24,6 +24,8 @@ public class Warehouse {
     @Column(name = "order_id")
     private String orderId;
 
+    @Column(name = "oper_id")
+    private String operId;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "house_id")
@@ -35,6 +37,14 @@ public class Warehouse {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getOperId() {
+        return operId;
+    }
+
+    public void setOperId(String operId) {
+        this.operId = operId;
     }
 
     public Long getHouseId() {
