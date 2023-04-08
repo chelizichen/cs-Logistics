@@ -78,6 +78,7 @@ public class OrderController {
             existingOrder.setCustomerId(order.getCustomerId());
             existingOrder.setOrderDate(order.getOrderDate());
             existingOrder.setTotal(order.getTotal());
+            existingOrder.setOrderStatus(order.getOrderStatus());
             Order savedOrder = orderRepository.save(existingOrder);
             return new ResponseEntity<>(savedOrder, HttpStatus.OK);
         }

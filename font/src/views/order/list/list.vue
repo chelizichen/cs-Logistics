@@ -11,14 +11,21 @@
             <el-table :data="state.table" border style="width: 100%">
                 <el-table-column align="center" prop="orderInfoId" label="订单ID" width="180" />
                 <el-table-column align="center" prop="amount" label="商品总价" width="180" />
+                <el-table-column align="center" prop="orderStatus" label="状态" />
                 <el-table-column align="center" prop="customerId" label="用户ID" width="180" />
                 <el-table-column align="center" prop="orderDate" label="下单日期" />
                 <el-table-column align="center" prop="total" label="总价" width="180" />
                 <el-table-column align="center" prop="id" label="序号" />
-                <el-table-column align="center" label='操作'>
+                <el-table-column align="center" label='操作' fixed="right">
                     <template #default="scope">
                         <el-button @click="update(scope.row)" type="primary" class="update"> 
                             操作
+                        </el-button>
+                        <el-button @click="update(scope.row,1)" type="primary" class="update"> 
+                            开始
+                        </el-button>
+                        <el-button @click="update(scope.row,2)" type="primary" class="update"> 
+                            结束
                         </el-button>
                         <el-popconfirm title="确认删除?" @confirm="del(scope.row.id)">
                             <template #reference >
@@ -35,13 +42,14 @@
                 <el-pagination background layout="prev, pager, next" :total="state.total"  class="pg_el"/>
             </div>
         </div>
+        <Edit 
+        :dialogFormVisible="state.dialogFormVisible"  
+        :val="state.dialogVal"
+        @close="handle_close"
+        @success="handle_success"
+        ></Edit>
     </div>
-    <Edit 
-    :dialogFormVisible="state.dialogFormVisible"  
-    :val="state.dialogVal"
-    @close="handle_close"
-    @success="handle_success"
-    ></Edit>
+
 </template>
 
 <script lang="ts" setup>
@@ -50,6 +58,8 @@ import { onMounted, reactive,ref } from 'vue';
 import { ElNotification } from 'element-plus';
 import Edit from './edit.vue';
 import {deleteOrder, getAllOrders} from '../../../api/order';
+import { createOrder, updateOrder } from '../../../api/order';
+
 const state = reactive({
     table:[],
     total:0,
@@ -88,9 +98,16 @@ onMounted(async ()=>{
     await search()
 })
 
-function update(row:user_table){
-    state.dialogFormVisible = true
-    state.dialogVal = row
+function update(row:orders_table,status:number){
+    if(status){
+        row.orderStatus = String(status)
+        updateOrder(row.id,row).then(()=>{
+            search()
+        })
+    }else{
+        state.dialogFormVisible = true
+        state.dialogVal = row
+    }
     console.log(row);
 }
 

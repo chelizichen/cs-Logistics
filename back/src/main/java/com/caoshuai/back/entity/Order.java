@@ -38,8 +38,6 @@ public class Order {
     @Column(name = "order_status")
     private String orderStatus;
 
-
-
     @Column(name = "finish_date")
     private String finishDate;
 

@@ -5,5 +5,6 @@ type orders_table = {
     total:string;
     amount:string;
     orderInfoId:string;
-    desc:string;
+    orderDesc:string;
+    orderStatus:number;
 }

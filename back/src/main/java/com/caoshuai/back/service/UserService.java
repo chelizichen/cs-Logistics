@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -21,7 +22,12 @@ public class UserService {
     private UserRepository userRepository;
 
     public User createUser(User user) {
-        return userRepository.save(user);
+        Optional<User> userOpt = userRepository.findByNameAndEmail(user.getName(), user.getEmail());
+        if(!userOpt.isPresent()){
+            return userRepository.save(user);
+        }else {
+            return user;
+        }
     }
 
     public User updateUser(Long id, User user) {

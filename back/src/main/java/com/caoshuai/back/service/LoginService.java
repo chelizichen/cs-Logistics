@@ -14,9 +14,6 @@ public class LoginService {
 
     public User login(String usernameOrEmail, String password) {
 
-        System.out.println(usernameOrEmail);
-        System.out.println(password);
-
         Optional<User> userOpt = userRepository.findByNameAndEmail(usernameOrEmail, usernameOrEmail);
         if (userOpt.isPresent()) {
             User user = userOpt.get();
