@@ -1,6 +1,9 @@
 <template>
     <div class="make-order">
         <el-card>
+            <template #header>
+                <div class="center">物流下单界面</div>
+            </template>
             <el-form :model="form" label-width="120px">
                 <el-form-item label="总数">
                     <el-input v-model="form.total" />
@@ -12,7 +15,7 @@
                     <el-date-picker
                     v-model="form.orderDate"
                     type="datetime"
-                    placeholder="Select date and time"
+                    placeholder="选择下单时间"
                   />
                 </el-form-item>
 
@@ -33,6 +36,7 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 import { createOrder } from '../../api/order';
+import { ElNotification } from 'element-plus';
 
 const form = reactive<Partial<orders_table>>({
     'orderDate': '',
@@ -43,8 +47,10 @@ const form = reactive<Partial<orders_table>>({
 })
 
 const onSubmit = async () => {
-    const data =await createOrder(form)
-    console.log(data);
+    await createOrder(form)
+    ElNotification.success({
+        title:"下单成功",
+    })
 }
 </script>
 
@@ -53,4 +59,14 @@ const onSubmit = async () => {
     margin: 20px 5%;
     width: 90%;
 }
+.make-order>>>.el-form-item__label {
+    color: black;
+    width: 70px !important;
+  }
+  .center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
 </style>

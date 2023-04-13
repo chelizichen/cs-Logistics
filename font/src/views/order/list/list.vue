@@ -16,15 +16,15 @@
                 <el-table-column align="center" prop="orderDate" label="下单日期" />
                 <el-table-column align="center" prop="total" label="总价" width="180" />
                 <el-table-column align="center" prop="id" label="序号" />
-                <el-table-column align="center" label='操作' fixed="right">
+                <el-table-column align="center" label='操作' fixed="right" width="360">
                     <template #default="scope">
                         <el-button @click="update(scope.row)" type="primary" class="update"> 
                             操作
                         </el-button>
-                        <el-button @click="update(scope.row,1)" type="primary" class="update"> 
+                        <el-button @click="update(scope.row,1)" type="warning" class="update"> 
                             开始
                         </el-button>
-                        <el-button @click="update(scope.row,2)" type="primary" class="update"> 
+                        <el-button @click="update(scope.row,2)" type="success" class="update"> 
                             结束
                         </el-button>
                         <el-popconfirm title="确认删除?" @confirm="del(scope.row.id)">
@@ -98,7 +98,7 @@ onMounted(async ()=>{
     await search()
 })
 
-function update(row:orders_table,status:number){
+function update(row:orders_table,status?:number){
     if(status){
         row.orderStatus = String(status)
         updateOrder(row.id,row).then(()=>{

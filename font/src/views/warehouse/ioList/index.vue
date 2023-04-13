@@ -5,7 +5,7 @@
         <el-input v-model="pagination.keyword" placeholder="用户名搜索" />
       </div>
       <el-button @click="search" type="primary">搜索</el-button>
-      <el-button @click="handle_add" type="success">添加用户</el-button>
+      <el-button @click="handle_add" type="success">添加物流</el-button>
     </div>
     <div>
       <el-table :data="state.table" border style="width: 100%">
@@ -110,12 +110,14 @@ async function del(id: string) {
 }
 
 async function register(row:house_table){
-    registerWareHouse(row)
-    ElNotification({
-            title: "通知",
-            message:"更新成功"
-        })
-    search()
+    const data = await registerWareHouse(row)
+    if(data.data){
+      ElNotification({
+              title: "通知",
+              message:"更新成功"
+          })
+      search()
+    }
 }
 
 const pagination = ref({

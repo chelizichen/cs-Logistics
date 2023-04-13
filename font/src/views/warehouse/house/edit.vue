@@ -1,27 +1,26 @@
 <template>
-  <el-dialog v-model="props.dialogFormVisible" title="Shipping address" @closed="close">
+  <el-dialog v-model="props.dialogFormVisible" title="更新仓库" @closed="close">
     <el-form :model="props.val">
 
       <el-form-item label="地址" :label-width="formLabelWidth">
-        <el-input v-model="props.val.address" autocomplete="off" />
+        <el-input v-model="props.val.location" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="邮箱" :label-width="formLabelWidth">
-        <el-input v-model="props.val.inTime" autocomplete="off" />
+      <el-form-item label="仓库名称" :label-width="formLabelWidth">
+        <el-input v-model="props.val.name" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="名字" :label-width="formLabelWidth">
-        <el-input v-model="props.val.outTime" autocomplete="off" />
+      <el-form-item label="负责人电话" :label-width="formLabelWidth">
+        <el-input v-model="props.val.phone" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="密码" :label-width="formLabelWidth">
-        <el-input v-model="props.val.orderId" autocomplete="off" />
+      <el-form-item label="工作时间" :label-width="formLabelWidth">
+        <el-input v-model="props.val.workTime" autocomplete="off" />
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="close">取消</el-button>
         <el-button type="primary" @click="submit">
-          修改
+          提交
         </el-button>
-        
       </span>
     </template>
   </el-dialog>

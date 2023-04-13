@@ -1,16 +1,16 @@
 <template>
-  <el-dialog v-model="props.dialogFormVisible" title="Shipping address" @closed="close">
+  <el-dialog v-model="props.dialogFormVisible" title="更新物流" @closed="close">
     <el-form :model="props.val">
       <el-form-item label="地址" :label-width="formLabelWidth">
         <el-input v-model="props.val.address" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="邮箱" :label-width="formLabelWidth">
+      <el-form-item v-if="isAdd" label="入库时间" :label-width="formLabelWidth">
         <el-input v-model="props.val.inTime" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="名字" :label-width="formLabelWidth">
+      <el-form-item v-if="!isAdd" label="出库时间" :label-width="formLabelWidth">
         <el-input v-model="props.val.outTime" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="密码" :label-width="formLabelWidth">
+      <el-form-item label="订单ID" :label-width="formLabelWidth">
         <el-input v-model="props.val.orderId" autocomplete="off" />
       </el-form-item>
     </el-form>
@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, watch } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 import { createUser, updateUser } from '../../../api/user';
 import { createWarehouse, updateWarehouse } from '../../../api/warehouse';
 
@@ -55,6 +55,8 @@ async function submit() {
   // console.log(data);
 
 }
+
+const isAdd = computed(()=>props.val.id?false:true)
 
 const emit = defineEmits(["close", "success"])
 

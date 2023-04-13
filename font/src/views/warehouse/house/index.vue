@@ -2,10 +2,10 @@
     <div>
         <div class="top">
             <div class="search">
-                <el-input v-model="pagination.keyword" placeholder="用户名搜索"/>
+                <el-input v-model="pagination.keyword" placeholder="仓库搜索"/>
             </div>
             <el-button @click="search" type="primary">搜索</el-button>
-            <el-button @click="handle_add" type="success">添加用户</el-button>
+            <el-button @click="handle_add" type="success">添加仓库</el-button>
         </div>
         <div>
             <el-table :data="state.table" border style="width: 100%">
@@ -92,7 +92,6 @@ onMounted(async ()=>{
 function update(row:house_table){
     state.dialogFormVisible = true
     state.dialogVal = row
-    console.log(row);
 }
 
 async function del(id:string){

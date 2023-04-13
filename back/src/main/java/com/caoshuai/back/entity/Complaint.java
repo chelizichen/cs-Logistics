@@ -1,6 +1,5 @@
 package com.caoshuai.back.entity;
 
-import jdk.vm.ci.meta.Local;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -29,10 +28,10 @@ public class Complaint {
     @Column( name = "status")
     private String status;
 
-    @Column( name = "createTime")
+    @Column( name = "create_time")
     private Date createTime;
 
-    @Column( name = "updateTime")
+    @Column( name = "update_time")
     private Date updateTime;
 
     public Long getId() {
