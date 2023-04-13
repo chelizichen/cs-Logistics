@@ -26,7 +26,7 @@ public class UserService {
         if(!userOpt.isPresent()){
             return userRepository.save(user);
         }else {
-            return user;
+            return null;
         }
     }
 

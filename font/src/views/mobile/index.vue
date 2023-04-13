@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bg">
         <MakeOrder></MakeOrder>
         <LogisticsList></LogisticsList>
     </div>
@@ -14,5 +14,8 @@ import MakeOrder from './makeOrder.vue';
 </script>
 
 <style scoped>
-
+.bg{
+    height: 100vh;
+    background-color: #2d3a4b;
+}
 </style>

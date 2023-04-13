@@ -10,10 +10,14 @@ import HouseList from '../views/warehouse/house/index.vue';
 import WareHouseList from '../views/warehouse/ioList/index.vue';
 
 import Login from '../views/Login.vue'
+import CreateUser from "../views/CreateUser.vue";
+
 import Admin from '../views/Admin.vue'
 import Mobile from '../views/mobile/index.vue'
 import DetailLogisitics from '../views/mobile/detail.vue';
 import MakeOrder from '../views/mobile/order.vue';
+import ComplaintList from "../views/complaint/list.vue";
+
 
 const routes = [
   {
@@ -22,9 +26,18 @@ const routes = [
     component: Home,
   },
   {
+    path: "/",
+    redirect: "/login",
+  },
+  {
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/addUser",
+    name: "AddUser",
+    component: CreateUser,
   },
   {
     path: "/mobile",
@@ -80,6 +93,11 @@ const routes = [
         path: "/warehouse/list",
         name: "WarehouseList",
         component: WareHouseList,
+      },
+      {
+        path: "/complaint/list",
+        name: "ComplaintList",
+        component: ComplaintList,
       },
     ],
   },

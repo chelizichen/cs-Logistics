@@ -66,7 +66,7 @@ onMounted(async () => {
 }
 .his{
     text-align: center;
-    color: gray;
+    color: white;
     margin: 20px 0;
 }
 .watch{

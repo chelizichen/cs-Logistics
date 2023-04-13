@@ -35,14 +35,14 @@ function makeOrder() {
 <style scoped>
 .make-order{
     width: 90%;
-    margin: 20px 5% 0 5%;
+    padding: 20px 5% 0 5%;
 }
 .yh{
     color: red;
 }
 .make{
     text-align: center;
-    margin: 20px 0;
-    color: red;
+    padding: 20px 0;
+    color: white;
 }
 </style>
