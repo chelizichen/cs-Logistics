@@ -59,9 +59,9 @@ justify-content: center;
 
             <span>仓库管理</span>
           </template>
-          <el-menu-item index="3-1" @click="to('/warehouse/list')"> 物流列表</el-menu-item>
-          <el-menu-item index="3-3" @click="to('/house/list')"> 仓库列表</el-menu-item>
-          <el-menu-item index="3-2"> 库存统计</el-menu-item>
+          <el-menu-item index="3-1" @click="to('/warehouse/list')"> 仓储列表</el-menu-item>
+          <el-menu-item index="3-2" @click="to('/house/list')"> 仓库列表</el-menu-item>
+          <el-menu-item index="3-3" @click="to('/logistics/list')"> 物流列表</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="4">
           <template #title>

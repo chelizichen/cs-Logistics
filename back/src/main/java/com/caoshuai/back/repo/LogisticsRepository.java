@@ -13,4 +13,7 @@ import org.springframework.stereotype.Repository;
 public interface LogisticsRepository extends JpaRepository<Logistics, Long> {
     @Query("SELECT l FROM Logistics l,User u where l.userId = u.id and l.userId = ?1")
     Page<Logistics> getAllByUserId(Long id, Pageable pageable);
+
+    @Query("SELECT l FROM Logistics l where l.logisticsCompany like %?1%")
+    Page<Logistics> findByKeyword(String keyword, Pageable pageable);
 }

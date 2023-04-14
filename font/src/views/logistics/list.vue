@@ -2,19 +2,17 @@
     <div>
         <div class="top">
             <div class="search">
-                <el-input v-model="pagination.keyword" placeholder="用户名搜索"/>
+                <el-input v-model="pagination.keyword" placeholder="搜索"/>
             </div>
             <el-button @click="search" type="primary">搜索</el-button>
             <el-button @click="handle_add" type="success">添加用户</el-button>
         </div>
         <div>
             <el-table :data="state.table" border style="width: 100%">
-                <el-table-column align="center" prop="createTime" label="创建时间" width="180" />
-                <el-table-column align="center" prop="name" label="姓名" width="180" />
-                <el-table-column align="center" prop="address" label="地址" />
-                <el-table-column align="center" prop="email" label="邮件" width="180" />
-                <el-table-column align="center" prop="permissions" label="权限" width="180" />
-                <el-table-column align="center" prop="phoneNumber" label="电话" />
+                <el-table-column align="center" prop="logisticsCompany" label="物流公司" width="180" />
+                <el-table-column align="center" prop="logisticsStatus" label="物流状态" />
+                <el-table-column align="center" prop="logisticsTime" label="物流开始时间" width="180" />
+                <el-table-column align="center" prop="orderId" label="订单号" width="180" />
                 <el-table-column align="center" label='操作'>
                     <template #default="scope">
                         <el-button @click="update(scope.row)" type="primary" class="update"> 
@@ -47,19 +45,19 @@
 <script lang="ts" setup>
 
 import { onMounted, reactive,ref } from 'vue';
-import { deleteUser, getAllUsers } from '../../../api/user';
+import { getAllLogistics, deleteLogistics } from '../../api/logistics';
 import { ElNotification } from 'element-plus';
 import Edit from './edit.vue';
 const state = reactive({
     table:[],
     total:0,
     dialogFormVisible:false,
-    dialogVal:<Partial<user_table>>{}
+    dialogVal:<Partial<logistics_table>>{}
 })
 
 
 async function search() {
-    const data = await getAllUsers(pagination.value)
+    const data = await getAllLogistics(pagination.value)
     state.table = data.data.list;
     state.total = data.data.total
 }
@@ -95,7 +93,7 @@ function update(row:user_table){
 }
 
 async function del(id:string){
-    const data = await deleteUser(id)
+    const data = await deleteLogistics(id)
     // @ts-ignore
     if(data.code==0){
         ElNotification({

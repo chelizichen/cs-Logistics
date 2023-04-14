@@ -1,24 +1,26 @@
 <template>
-  <el-dialog v-model="props.dialogFormVisible" title="Shipping address" @closed="close">
+  <el-dialog v-model="props.dialogFormVisible" title="更新物流" @closed="close">
     <el-form :model="props.val">
 
-      <el-form-item label="地址" :label-width="formLabelWidth">
-        <el-input v-model="props.val.address" autocomplete="off" />
+      <el-form-item label="物流公司" :label-width="formLabelWidth">
+        <el-input v-model="props.val.logisticsCompany" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="邮箱" :label-width="formLabelWidth">
-        <el-input v-model="props.val.email" autocomplete="off" />
+      <el-form-item label="物流状态" :label-width="formLabelWidth">
+        <el-select v-model="props.val.logisticsStatus" class="m-2" placeholder="选择物流状态" size="large">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
       </el-form-item>
-      <el-form-item label="名字" :label-width="formLabelWidth">
-        <el-input v-model="props.val.name" autocomplete="off" />
+      <el-form-item label="物流更新时间" :label-width="formLabelWidth" >
+        <el-input v-model="props.val.logisticsTime" autocomplete="off" :disabled="true"/>
       </el-form-item>
-      <el-form-item label="密码" :label-width="formLabelWidth">
-        <el-input v-model="props.val.password" autocomplete="off" />
-      </el-form-item>
-      <el-form-item label="权限" :label-width="formLabelWidth">
-        <el-input v-model="props.val.permissions" autocomplete="off" />
-      </el-form-item>
-      <el-form-item label="电话" :label-width="formLabelWidth">
-        <el-input v-model="props.val.phoneNumber" autocomplete="off" />
+
+      <el-form-item label="订单ID" :label-width="formLabelWidth">
+        <el-input v-model="props.val.orderId" autocomplete="off" :disabled="true" />
       </el-form-item>
     </el-form>
     <template #footer>
@@ -34,11 +36,28 @@
 
 <script setup lang="ts">
 import { reactive, ref, watch } from 'vue'
-import { createUser, updateUser } from '../../../api/user';
+import { createLogistics, updateLogistics } from '../../api/logistics';
+
+const options = [
+
+  {
+    label:"待发货",
+    value:"1"
+  },
+  {
+    label:"运输中",
+    value:"2"
+  },
+  {
+    label:"运输完成",
+    value:"3"
+  },
+  
+]
 
 const props = defineProps<{
   dialogFormVisible: boolean,
-  val: Partial<user_table>
+  val: Partial<logistics_table>
 }>()
 
 
@@ -46,11 +65,11 @@ const formLabelWidth = '140px'
 
 async function submit() {
   if(props.val.id){
-    const data = await updateUser(props.val.id, props.val)
+    const data = await updateLogistics(props.val.id, props.val)
     console.log(data);
     
   }else{
-    const data = await createUser(props.val)
+    const data = await createLogistics(props.val)
     console.log(data);
   }
   // @ts-ignore

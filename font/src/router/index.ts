@@ -8,6 +8,7 @@ import OrderAnalyze from "../views/order/analyze.vue";
 
 import HouseList from '../views/warehouse/house/index.vue';
 import WareHouseList from '../views/warehouse/ioList/index.vue';
+import LogisticsList from '../views/logistics/list.vue';
 
 import Login from '../views/Login.vue'
 import CreateUser from "../views/CreateUser.vue";
@@ -93,6 +94,11 @@ const routes = [
         path: "/warehouse/list",
         name: "WarehouseList",
         component: WareHouseList,
+      },
+      {
+        path: "/logistics/list",
+        name: "Logistics",
+        component: LogisticsList,
       },
       {
         path: "/complaint/list",

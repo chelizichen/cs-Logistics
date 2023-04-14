@@ -28,8 +28,13 @@ public class LogisticsController {
     private LogisticsService logisticsService;
 
     @GetMapping
-    public List<Logistics> getAllLogistics() {
-        return logisticsService.getAllLogistics();
+    public Ret getAllLogistics(@RequestParam(value = "keyword", defaultValue = "") String keyword,
+                                           @RequestParam(value = "page", defaultValue = "1") String page,
+                                           @RequestParam(value = "size", defaultValue = "10") String size) {
+        Integer _page = Integer.parseInt(page) - 1;
+        Integer _size = Integer.valueOf(size);
+
+        return Ret.success(logisticsService.getAllLogistics(keyword,_page,_size));
     }
 
     @GetMapping("/{id}")
@@ -52,6 +57,7 @@ public class LogisticsController {
     public ResponseEntity<Logistics> updateLogistics(@PathVariable Long id, @RequestBody Logistics logistics) {
         Optional<Logistics> optionalLogistics = logisticsService.getLogisticsById(id);
         if (optionalLogistics.isPresent()) {
+            System.out.println(logistics.getLogisticsStatus());
             Logistics updatedLogistics = logisticsService.updateLogistics(id, logistics);
             return new ResponseEntity<>(updatedLogistics, HttpStatus.OK);
         } else {

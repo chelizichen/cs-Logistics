@@ -2,6 +2,7 @@ package com.caoshuai.back.service;
 
 
 import com.caoshuai.back.dto.ListRet;
+import com.caoshuai.back.entity.House;
 import com.caoshuai.back.entity.Logistics;
 import com.caoshuai.back.entity.Warehouse;
 import com.caoshuai.back.repo.LogisticsRepository;
@@ -19,8 +20,13 @@ public class LogisticsService {
     @Autowired
     private LogisticsRepository logisticsRepository;
 
-    public List<Logistics> getAllLogistics() {
-        return logisticsRepository.findAll();
+    public ListRet getAllLogistics(String keyword, Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Logistics> byKeyword = logisticsRepository.findByKeyword(keyword, pageable);
+        List<Logistics> content = byKeyword.getContent();
+        long totalElements = byKeyword.getTotalElements();
+        ListRet listRet = new ListRet(content, totalElements);
+        return listRet;
     }
 
     public Optional<Logistics> getLogisticsById(Long id) {
@@ -32,8 +38,14 @@ public class LogisticsService {
     }
 
     public Logistics updateLogistics(Long id, Logistics logistics) {
-        logistics.setId(id);
-        return logisticsRepository.save(logistics);
+        Optional<Logistics> byId = logisticsRepository.findById(id);
+        boolean present = byId.isPresent();
+        if(present){
+            Logistics logistics1 = byId.get();
+            logistics1.setLogisticsStatus(logistics.getLogisticsStatus());
+            return logisticsRepository.save(logistics1);
+        }
+        return null;
     }
 
     public void deleteLogistics(Long id) {
