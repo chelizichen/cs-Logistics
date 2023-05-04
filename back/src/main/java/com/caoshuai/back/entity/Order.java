@@ -41,6 +41,11 @@ public class Order {
     @Column(name = "finish_date")
     private String finishDate;
 
+    @Column(name = "from_location")
+    private String fromLocation;
+
+    @Column(name = "to_location")
+    private String toLocation;
 
     @OneToMany(targetEntity = Logistics.class,cascade=CascadeType.ALL)
     @JoinColumn(name = "order_id")
@@ -140,6 +145,25 @@ public class Order {
         this.amount = amount;
     }
 
+    public void setFinishDate(String finishDate) {
+        this.finishDate = finishDate;
+    }
+
+    public String getFromLocation() {
+        return fromLocation;
+    }
+
+    public void setFromLocation(String fromLocation) {
+        this.fromLocation = fromLocation;
+    }
+
+    public String getToLocation() {
+        return toLocation;
+    }
+
+    public void setToLocation(String toLocation) {
+        this.toLocation = toLocation;
+    }
 
     // getters and setters
 }

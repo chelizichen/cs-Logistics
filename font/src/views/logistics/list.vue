@@ -5,12 +5,17 @@
                 <el-input v-model="pagination.keyword" placeholder="搜索"/>
             </div>
             <el-button @click="search" type="primary">搜索</el-button>
-            <el-button @click="handle_add" type="success">添加用户</el-button>
+            <el-button @click="handle_add" type="success">添加物流</el-button>
         </div>
         <div>
             <el-table :data="state.table" border style="width: 100%">
                 <el-table-column align="center" prop="logisticsCompany" label="物流公司" width="180" />
-                <el-table-column align="center" prop="logisticsStatus" label="物流状态" />
+                <el-table-column align="center" prop="logisticsStatus" label="物流状态" >
+                    <template #default="scope">
+                        {{ getStatus(scope.row.logisticsStatus) }}
+                        </template>
+                </el-table-column>
+
                 <el-table-column align="center" prop="logisticsTime" label="物流开始时间" width="180" />
                 <el-table-column align="center" prop="orderId" label="订单号" width="180" />
                 <el-table-column align="center" label='操作'>
@@ -106,6 +111,26 @@ async function del(id:string){
 
 
 
+
+const options = [
+
+  {
+    label:"待发货",
+    value:"1"
+  },
+  {
+    label:"运输中",
+    value:"2"
+  },
+  {
+    label:"运输完成",
+    value:"3"
+  },
+]
+
+function getStatus(status:string){
+    return options.find(item=>item.value == status)?.label
+}
 
 const pagination = ref({
     keyword:"",

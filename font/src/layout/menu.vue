@@ -43,11 +43,9 @@ justify-content: center;
             <span>系统管理</span>
           </template>
           <el-menu-item index="1-1" @click="to('/system/user')"> 用户管理</el-menu-item>
-          <el-menu-item index="1-2" @click="to('/system/permission')"> 权限管理</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2">
           <template #title>
-
             <span>订单管理</span>
           </template>
           <el-menu-item index="2-1" @click="to('/order/list')"> 订单列表</el-menu-item>
@@ -61,14 +59,18 @@ justify-content: center;
           </template>
           <el-menu-item index="3-1" @click="to('/warehouse/list')"> 仓储列表</el-menu-item>
           <el-menu-item index="3-2" @click="to('/house/list')"> 仓库列表</el-menu-item>
-          <el-menu-item index="3-3" @click="to('/logistics/list')"> 物流列表</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="4">
           <template #title>
-
+            <span>物流管理</span>
+          </template>
+          <el-menu-item index="3-3" @click="to('/logistics/list')"> 物流列表</el-menu-item>
+        </el-sub-menu>
+        <el-sub-menu index="5">
+          <template #title>
             <span>投诉管理</span>
           </template>
-          <el-menu-item index="4-1" @click="to('/complaint/list')"> 投诉列表</el-menu-item>
+          <el-menu-item index="5-1" @click="to('/complaint/list')"> 投诉列表</el-menu-item>
         </el-sub-menu>
       </el-menu>
     </el-col>

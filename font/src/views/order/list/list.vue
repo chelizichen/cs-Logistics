@@ -5,15 +5,23 @@
                 <el-input v-model="pagination.keyword" placeholder="用户名搜索"/>
             </div>
             <el-button @click="search" type="primary">搜索</el-button>
-            <el-button @click="handle_add" type="success">添加用户</el-button>
+            <el-button @click="handle_add" type="success">添加订单</el-button>
         </div>
         <div>
             <el-table :data="state.table" border style="width: 100%">
                 <el-table-column align="center" prop="orderInfoId" label="订单ID" width="180" />
                 <el-table-column align="center" prop="amount" label="商品总价" width="180" />
-                <el-table-column align="center" prop="orderStatus" label="状态" />
+                <el-table-column align="center" prop="orderStatus" label="状态" >
+                    <template #default="scope">
+                        <div v-if="scope.row.orderStatus == 0 ">退单</div>    
+                        <div v-if="scope.row.orderStatus == 1 ">进行中</div>    
+                        <div v-if="scope.row.orderStatus == 2 ">已结束</div>    
+                    </template>
+                </el-table-column>
                 <el-table-column align="center" prop="customerId" label="用户ID" width="180" />
                 <el-table-column align="center" prop="orderDate" label="下单日期" />
+                <el-table-column align="center" prop="fromLocation" label="下单日期" />
+                <el-table-column align="center" prop="toLocation" label="下单日期" />
                 <el-table-column align="center" prop="total" label="总价" width="180" />
                 <el-table-column align="center" prop="id" label="序号" />
                 <el-table-column align="center" label='操作' fixed="right" width="360">

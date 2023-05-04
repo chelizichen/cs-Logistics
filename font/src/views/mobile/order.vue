@@ -11,6 +11,12 @@
                 <el-form-item label="总金额">
                     <el-input v-model="form.amount" />
                 </el-form-item>
+                <el-form-item label="下单地址">
+                    <el-input v-model="form.fromLocation" />
+                </el-form-item>
+                <el-form-item label="运送地址">
+                    <el-input v-model="form.toLocation" />
+                </el-form-item>
                 <el-form-item label="下单日期">
                     <el-date-picker
                     v-model="form.orderDate"
@@ -43,7 +49,9 @@ const form = reactive<Partial<orders_table>>({
     'amount': '',
     'total': '',
     'desc': "",
-    'customerId':'2'
+    'customerId':'2',
+    'fromLocation':'',
+    'toLocation':''
 })
 
 const onSubmit = async () => {

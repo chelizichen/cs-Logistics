@@ -22,7 +22,20 @@
       <el-form-item label="订单ID" :label-width="formLabelWidth">
         <el-input v-model="props.val.orderId" autocomplete="off" :disabled="true" />
       </el-form-item>
+      <el-form-item label="订单ID" :label-width="formLabelWidth">
+        <el-timeline>
+          <el-timeline-item
+            v-for="(activity, index) in state.list"
+            :key="index"
+            :timestamp="activity.outTime"
+          >
+            {{ activity.address        }}
+          </el-timeline-item>
+        </el-timeline>
+        </el-form-item>
+
     </el-form>
+   
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="close">取消</el-button>
@@ -37,6 +50,7 @@
 <script setup lang="ts">
 import { reactive, ref, watch } from 'vue'
 import { createLogistics, updateLogistics } from '../../api/logistics';
+import { getOrderById } from '../../api/order';
 
 const options = [
 
@@ -52,7 +66,6 @@ const options = [
     label:"运输完成",
     value:"3"
   },
-  
 ]
 
 const props = defineProps<{
@@ -62,6 +75,10 @@ const props = defineProps<{
 
 
 const formLabelWidth = '140px'
+
+const state = reactive({
+  list:[]
+})
 
 async function submit() {
   if(props.val.id){
@@ -80,6 +97,13 @@ async function submit() {
   // console.log(data);
 
 }
+
+watch(props,async ()=>{
+  if(props.val.id){
+    const data = await getOrderById(props.val.id)
+    state.list = data.data.warehouseList
+  }
+})
 
 const emit = defineEmits(["close", "success"])
 

@@ -7,4 +7,6 @@ type orders_table = {
     orderInfoId:string;
     desc:string;
     orderStatus:number;
+    fromLocation:string;
+    toLocation:string;
 }
